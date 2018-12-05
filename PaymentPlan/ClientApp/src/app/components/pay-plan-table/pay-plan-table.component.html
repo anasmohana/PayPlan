@@ -1,0 +1,29 @@
+<mat-table [dataSource]="periods">
+  <ng-container matColumnDef="period">
+    <mat-header-cell *matHeaderCellDef> Period </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.period}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.dueDate}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="payment">
+    <mat-header-cell *matHeaderCellDef> Payment </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.payment}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="installment">
+    <mat-header-cell *matHeaderCellDef> Installment </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.installment}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="monthlyInterest">
+    <mat-header-cell *matHeaderCellDef> Interest </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.monthlyInterest}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="balance">
+    <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+    <mat-cell *matCellDef="let period"> {{period.balance}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+

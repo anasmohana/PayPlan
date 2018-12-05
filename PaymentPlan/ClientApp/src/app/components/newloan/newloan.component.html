@@ -1,0 +1,20 @@
+<form #f="ngForm" (ngSubmit)="submit()" class="form-section">
+  <mat-form-field class="form-margin">
+    <input matInput type="number" name="amount" placeholder="Preferred Loan Amount" [(ngModel)]="loanParams.loanAmount" required #amount="ngModel">
+    <mat-error *ngIf="amount.touched&&!amount.valid">Please enter the loan amount</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-margin">
+    <input matInput type="number" name="year" placeholder="Payback Period" [(ngModel)]="loanParams.numberOfYears" required #year="ngModel">
+    <mat-error *ngIf="year.touched&&!year.valid">Please enter the number of years</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-margin">
+    <input matInput type="number" name="interest" placeholder="Interest" [(ngModel)]="loanParams.interest" disabled>
+  </mat-form-field>
+  <div class="form-group">
+    <input class="form-control" type="submit" [disabled]="!f.valid" />
+  </div>
+</form>
+<mat-slider class="form-margin" min="5000" max="500000" step="5000" [(ngModel)]="loanParams.loanAmount" (input)="updateAmount($event)"></mat-slider>
+<mat-slider class="slider-margin" min="1" max="10" step="1" [(ngModel)]="loanParams.numberOfYears" (input)="updateYears($event)"></mat-slider>
+
+<app-pay-plan-table [dataSource]="dataSource"  *ngIf="showTable"></app-pay-plan-table>
