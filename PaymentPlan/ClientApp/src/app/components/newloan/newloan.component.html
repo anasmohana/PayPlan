@@ -1,20 +1,23 @@
 <form #f="ngForm" (ngSubmit)="submit()" class="form-section">
   <mat-form-field class="form-margin">
-    <input matInput type="number" name="amount" placeholder="Preferred Loan Amount" [(ngModel)]="loanParams.loanAmount" required #amount="ngModel">
+    <input matInput type="number" name="amount" step="5000" placeholder="Preferred Loan Amount" [(ngModel)]="loanParams.loanAmount" (blur)="onAmountChange($event)" required #amount="ngModel">
     <mat-error *ngIf="amount.touched&&!amount.valid">Please enter the loan amount</mat-error>
   </mat-form-field>
   <mat-form-field class="form-margin">
-    <input matInput type="number" name="year" placeholder="Payback Period" [(ngModel)]="loanParams.numberOfYears" required #year="ngModel">
+    <input matInput type="number" name="year" placeholder="Payback Period" [(ngModel)]="loanParams.numberOfYears" (blur)="onYearCahnge($event)" #year="ngModel">
     <mat-error *ngIf="year.touched&&!year.valid">Please enter the number of years</mat-error>
   </mat-form-field>
   <mat-form-field class="form-margin">
     <input matInput type="number" name="interest" placeholder="Interest" [(ngModel)]="loanParams.interest" disabled>
   </mat-form-field>
+  <div class="form-margin">
+    <mat-checkbox name="isFixedPayment" color="primary" [(ngModel)]="loanParams.ISFixedPayment">Fixed Payment</mat-checkbox>
+  </div>
   <div class="form-group">
     <input class="form-control" type="submit" [disabled]="!f.valid" />
   </div>
 </form>
-<mat-slider class="form-margin" min="5000" max="500000" step="5000" [(ngModel)]="loanParams.loanAmount" (input)="updateAmount($event)"></mat-slider>
-<mat-slider class="slider-margin" min="1" max="10" step="1" [(ngModel)]="loanParams.numberOfYears" (input)="updateYears($event)"></mat-slider>
+<mat-slider class="form-margin" min="0" max="500000" step="5000" color="primary" [(ngModel)]="loanParams.loanAmount" (input)="updateAmount($event)"></mat-slider>
+<mat-slider class="slider-margin" min="0" max="10" step="1" color="primary" [(ngModel)]="loanParams.numberOfYears" (input)="updateYears($event)"></mat-slider>
 
-<app-pay-plan-table [dataSource]="dataSource"  *ngIf="showTable"></app-pay-plan-table>
+<app-pay-plan-table [dataSource]="dataSource" *ngIf="showTable"></app-pay-plan-table>

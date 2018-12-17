@@ -8,6 +8,7 @@ namespace PaymentPlan.Models {
     public class LoanParams {
         public double LoanAmount { get; set; }
         public double Interest { get; set; }
+        public bool ISFixedPayment { get; set; }
         public int NumberOfYears { get; set; }
     }
 }
